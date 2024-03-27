@@ -17,6 +17,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get(import.meta.env.VITE_API_URL);
+        console.log(import.meta.env.VITE_API_URL);
         if (isMounted) {
           setArticles(response.data.offers);
           setTotalPages(Math.ceil(response.data.count / limit));

@@ -1,0 +1,115 @@
+header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: 10px 0;
+  width: 1280px;
+}
+
+header > img {
+  height: 40px;
+}
+.recherche {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.barrerecherche {
+  background-color: #f5f6f7;
+  border: none;
+  border-radius: 5px;
+  font-family: Maison Neue;
+  font-size: 16px;
+  height: 37px;
+  outline: none;
+  padding-left: 40px;
+  width: 590px;
+}
+.tri {
+  margin-top: 25px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+.tritext {
+  margin-right: 10px;
+}
+.tribouton {
+  margin-right: 25px;
+}
+.echelle {
+  transform: scale(1);
+  cursor: inherit;
+  height: 36px;
+  display: flex;
+  width: 50%;
+}
+.barre {
+  height: 5px;
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(
+    to right,
+    rgb(204, 204, 204) 0%,
+    rgb(204, 204, 204) 2%,
+    rgb(44, 177, 186) 2%,
+    rgb(44, 177, 186) 20%,
+    rgb(204, 204, 204) 20%,
+    rgb(204, 204, 204) 100%
+  );
+  align-self: center;
+}
+.point {
+  position: absolute;
+  z-index: 0;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: rgb(44, 177, 186);
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-2.18px, -6px);
+}
+.bulle {
+  position: absolute;
+  top: -28px;
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  font-family: "Maison Neue";
+  padding: 4px;
+  border-radius: 4px;
+  background-color: rgb(44, 177, 186);
+}
+.signup,
+.login {
+  background-color: #fff;
+  color: #2cb1ba;
+  border: 1px solid #2cb1ba;
+  border-radius: 5px;
+  font-family: Maison Neue;
+  font-size: 12px;
+  height: 30px;
+  outline: none;
+  width: 115px;
+}
+.signup {
+  margin-right: 20px;
+}
+.sell {
+  background-color: #2cb1ba;
+  color: #fff;
+  border: 1px solid #2cb1ba;
+  border-radius: 5px;
+  font-family: Maison Neue;
+  font-size: 12px;
+  height: 30px;
+  outline: none;
+  width: 115px;
+}

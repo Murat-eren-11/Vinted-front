@@ -1,0 +1,83 @@
+.offremain {
+  background-color: #ebedee;
+  height: calc(100vh - 60px);
+}
+.offrecontainer {
+  display: flex;
+  gap: 30px;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding: 30px;
+  width: 1280px;
+}
+.imgofr {
+  height: 600px;
+  object-fit: cover;
+}
+.infosoffre {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  width: 320px;
+}
+.prix {
+  color: #111;
+  font-size: 24px;
+  line-height: 32px;
+}
+.listinfo {
+  list-style-type: none;
+  padding: 0;
+}
+
+.infoli {
+  display: flex;
+  padding: 2px 0;
+}
+.infoli span {
+  flex: 1 1;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.infolife span:nth-child(odd) {
+  color: #999;
+}
+.barredivise {
+  background-color: hsla(0, 0%, 7%, 0.1);
+  display: block;
+  height: 1px;
+  width: 100%;
+}
+
+.nom {
+  font-weight: 700;
+}
+.description {
+  color: #666;
+}
+.offeruser {
+  align-items: center;
+  display: flex;
+}
+
+.avatar {
+  border-radius: 50%;
+  height: 50px;
+  margin-right: 10px;
+  object-fit: cover;
+  width: 50px;
+}
+.buy {
+  background: #09b1ba;
+  border: 1px solid #09b1ba;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  height: 36px;
+  line-height: 36px;
+  margin-top: 32px;
+  padding: 0 16px;
+  width: 100%;
+}

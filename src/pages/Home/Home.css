@@ -1,0 +1,108 @@
+.banniere {
+  height: 600px;
+  width: 100%;
+}
+.imageaccueil {
+  object-fit: cover;
+  height: inherit;
+  width: 100%;
+}
+
+.dechire {
+  bottom: 102px;
+  pointer-events: none;
+  position: relative;
+}
+
+.carreaccueil {
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 2px hsla(0, 0%, 7%, 0.24);
+  display: flex;
+  flex-direction: column;
+  font-size: 34px;
+  height: 220px;
+  justify-content: center;
+  padding: 25px;
+  position: absolute;
+  top: 250px;
+  left: 100px;
+  width: 360px;
+}
+.startsell {
+  background-color: #2baeb7;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  height: 45px;
+  margin-top: 32px;
+  padding: 0 14px;
+  width: 187px;
+}
+
+.tousarticles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px auto auto;
+  width: 1280px;
+}
+.article {
+  cursor: pointer;
+  padding: 0 6px 16px;
+  width: 235px;
+  text-decoration: none;
+  margin-right: 30px;
+}
+.utilisateur {
+  align-items: center;
+  display: flex;
+  padding: 10px;
+}
+.utilisateur > span {
+  color: #999;
+  font-size: 12px;
+}
+.artimg {
+  height: 360px;
+  object-fit: cover;
+  width: 235px;
+}
+.prixtaillemarque {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+.prixtaillemarque span:first-child {
+  font-size: 14px;
+}
+.prixtaillemarque span:not(:first-child) {
+  color: #999;
+  font-size: 12px;
+}
+.pagination {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+.pages {
+  width: 32px;
+  margin: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  border: solid 2px black;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  background-color: black;
+  transition: all 0.1s;
+}
+.pages:hover {
+  border: solid 2px #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px #fff;
+}

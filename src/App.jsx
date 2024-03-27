@@ -11,6 +11,7 @@ function App() {
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 8;
+  console.log(import.meta.env.VITE_API_URL);
 
   useEffect(() => {
     let isMounted = true;

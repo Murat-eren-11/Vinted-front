@@ -3,13 +3,11 @@ import axios from "axios";
 import { useState } from "react";
 import Cookies from "js-cookie";
 
-const Signup = ({ visible, onClose }) => {
+const Signup = ({ visible, setVisible }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState(false);
-
-  if (!visible) return null;
 
   const userSignUp = async (e) => {
     e.preventDefault();
@@ -27,40 +25,62 @@ const Signup = ({ visible, onClose }) => {
       const { token } = response.data;
       Cookies.set("token", token, { expires: 7 });
 
-      onClose();
+      setVisible(false);
     } catch (error) {
       console.log(error.message);
     }
   };
 
   return (
-    <div className="modal">
-      <form onSubmit={userSignUp}>
-        <input
-          type="text"
-          value={username}
-          placeholder="nom d'utilisateur"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="email"
-          value={email}
-          placeholder="moi@gmail.com"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="******"
-        />
-        <input
-          type="checkbox"
-          checked={newsletter}
-          onChange={(e) => setNewsletter(e.target.checked)}
-        />
-        <button type="submit">Inscrivez-vous</button>
-      </form>
+    <div
+      className="modal"
+      onClick={() => {
+        setVisible(false);
+      }}
+    >
+      <div className="form-container" onClick={(e) => e.stopPropagation()}>
+        <div>
+          <h2>S'inscrire</h2>
+          <form onSubmit={userSignUp}>
+            <input
+              type="text"
+              value={username}
+              placeholder="nom d'utilisateur"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="email"
+              value={email}
+              placeholder="moi@gmail.com"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="******"
+            />
+            <div className="newsletter">
+              <input
+                className="newscheck"
+                type="checkbox"
+                checked={newsletter}
+                onChange={(e) => setNewsletter(e.target.checked)}
+              />{" "}
+              <p>S'inscrire à notre newsletter</p>
+            </div>
+            <small>
+              En m'inscrivant je confirme avoir lu et accepté les Termes &
+              Conditions et Politique de Confidentialité de Vinted. Je confirme
+              avoir au moins 18 ans.
+            </small>
+
+            <button className="inscrire" type="submit">
+              Inscrivez-vous
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

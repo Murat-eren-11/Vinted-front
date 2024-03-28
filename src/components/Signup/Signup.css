@@ -1,0 +1,100 @@
+.modal {
+  display: flex;
+  background-color: rgb(0, 0, 0, 0.8);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+}
+.form-container {
+  margin: 0 auto;
+  flex-direction: row;
+  width: 50%;
+}
+
+.form-container > div {
+  background-color: white;
+  border-radius: 20px;
+  padding: 100px 80px;
+  position: relative;
+}
+.form-container,
+.form-container > div,
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container i {
+  color: rgb(0, 0, 0, 0.5);
+  font-size: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.newsletter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.newsletter p {
+  line-height: 21px;
+  margin-bottom: 0;
+}
+.form-container p {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input {
+  width: 80%;
+  margin: 10px 0;
+  outline: none;
+  border-bottom: darkgrey 2px solid;
+  padding: 16px 10px;
+  font-size: 16px;
+}
+.newscheck {
+  margin-right: 20px;
+  width: 21px;
+  cursor: pointer;
+}
+small {
+  margin-bottom: 30px;
+  width: 40%;
+  font-size: 12px;
+  text-align: justify;
+}
+.inscrire {
+  background-color: darkgreen;
+  color: white;
+  width: 200px;
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+
+#cross {
+  cursor: pointer;
+}
+
+#succes {
+  display: none;
+}
+.modal-open {
+  overflow: hidden;
+}
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}

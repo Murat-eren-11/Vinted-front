@@ -25,7 +25,6 @@ const Signup = ({ visible, setVisible }) => {
       setEmail("");
       setPassword("");
       setNewsletter(false);
-      console.log("Inscription faite");
       setVisible(false);
     } catch (error) {
       console.log("Erreur lors de l'inscription :", error);

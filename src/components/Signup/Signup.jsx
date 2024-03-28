@@ -10,7 +10,7 @@ const Signup = ({ visible, setVisible }) => {
 
   const userSignUp = async (e) => {
     e.preventDefault();
-
+    console.log(`${import.meta.env.VITE_API_URL}user/signup`);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}user/signup`,
@@ -21,16 +21,11 @@ const Signup = ({ visible, setVisible }) => {
           newsletter: newsletter,
         }
       );
-      if (response.status === 200) {
-        console.log("Inscription réussie !");
-
-        setUsername("");
-        setEmail("");
-        setPassword("");
-        setNewsletter(false);
-      } else {
-        console.error("Erreur lors de l'inscription");
-      }
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      setNewsletter(false);
+      console.log("Inscription faite");
       setVisible(false);
     } catch (error) {
       console.log("Erreur lors de l'inscription :", error);

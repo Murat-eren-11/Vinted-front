@@ -22,7 +22,6 @@ const Login = ({ logVisible, setLogVisible }) => {
       );
       const { token } = response.data;
       Cookies.set("token", token, { expires: 7 });
-
       setLogVisible(false);
     } catch (error) {
       if (error.response.status === 401) {

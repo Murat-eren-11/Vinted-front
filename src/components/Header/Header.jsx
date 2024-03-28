@@ -1,7 +1,7 @@
 import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
 
-const Header = ({ visible, setVisible }) => {
+const Header = ({ visible, setVisible, logVisible, setLogVisible }) => {
   const location = useLocation();
 
   const isOfferPage = location.pathname.includes("/offer/");
@@ -37,7 +37,9 @@ const Header = ({ visible, setVisible }) => {
         <button className="signup" onClick={() => setVisible(!visible)}>
           S'inscrire
         </button>
-        <button className="login">Se connecter</button>
+        <button className="login" onClick={() => setLogVisible(!logVisible)}>
+          Se connecter
+        </button>
       </div>
       <div className="selltoo">
         <button className="sell">Vends tes articles</button>

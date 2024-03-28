@@ -1,7 +1,6 @@
 import "./Signup.css";
 import axios from "axios";
 import { useState } from "react";
-import Cookies from "js-cookie";
 
 const Signup = ({ visible, setVisible }) => {
   const [username, setUsername] = useState("");
@@ -16,18 +15,42 @@ const Signup = ({ visible, setVisible }) => {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/user/signup`,
         {
-          username,
-          email,
-          password,
-          newsletter,
+          username: username,
+          email: email,
+          password: password,
+          newsletter: newsletter,
         }
       );
-      const { token } = response.data;
-      Cookies.set("token", token, { expires: 7 });
+      if (response.status === 200) {
+        // Inscription réussie
+        // Afficher un message de succès à l'utilisateur
+        console.log("Inscription réussie !");
 
+        // Réinitialiser les champs du formulaire
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        setNewsletter(false);
+
+        // Rediriger l'utilisateur vers une autre page (facultatif)
+        // window.location.href = "/accueil";
+      } else {
+        // La requête a échoué, afficher un message d'erreur
+        console.error("Erreur lors de l'inscription");
+      }
       setVisible(false);
     } catch (error) {
-      console.log(error.message);
+      console.log("Erreur lors de l'inscription :", error);
+      if (error.response) {
+        console.log("Erreur de réponse de l'API :", error.response.data);
+        // Afficher un message à l'utilisateur indiquant l'erreur
+      } else if (error.request) {
+        console.log("Erreur de requête :", error.request);
+        // Afficher un message à l'utilisateur indiquant un problème de requête
+      } else {
+        console.log("Erreur inattendue :", error.message);
+        // Afficher un message à l'utilisateur indiquant une erreur inattendue
+      }
     }
   };
 

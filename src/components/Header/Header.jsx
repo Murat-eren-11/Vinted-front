@@ -1,9 +1,16 @@
 import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [signupVisible, setSignupVisible] = useState(false);
+
   const location = useLocation();
   const isOfferPage = location.pathname.includes("/offer/");
+
+  const handleSignup = () => {
+    setSignupVisible(true);
+  };
 
   return (
     <header>
@@ -33,7 +40,9 @@ const Header = () => {
         )}
       </div>
       <div className="loginsignup">
-        <button className="signup">S'inscrire</button>
+        <button className="signup" onClick={handleSignup}>
+          S'inscrire
+        </button>
         <button className="login">Se connecter</button>
       </div>
       <div className="selltoo">

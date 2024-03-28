@@ -1,8 +1,40 @@
 import "./Home.css";
 import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const Home = ({ articles, totalPages, handlePageChange }) => {
+const Home = () => {
+  const [articles, setArticles] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const limit = 8;
+
   const location = useLocation();
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}?page=${currentPage}&limit=${limit}`
+        );
+        if (isMounted) {
+          setArticles(response.data.offers);
+          setTotalPages(Math.ceil(response.data.count / limit));
+        }
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+    fetchData();
+    return () => {
+      isMounted = false;
+    };
+  }, [currentPage]);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -33,7 +65,7 @@ const Home = ({ articles, totalPages, handlePageChange }) => {
               </div>
               <div className="articleinfos">
                 <img
-                  src={article.product_pictures[0].url}
+                  src={article.product_pictures[0].secure_url}
                   className="artimg"
                   alt=""
                 />

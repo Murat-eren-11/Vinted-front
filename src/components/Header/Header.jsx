@@ -2,14 +2,14 @@ import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
-const Header = () => {
-  const [signupVisible, setSignupVisible] = useState(false);
-
+const Header = ({ visible, setVisible }) => {
+  const [visible, setVisible] = useState(false);
   const location = useLocation();
+
   const isOfferPage = location.pathname.includes("/offer/");
 
   const handleSignup = () => {
-    setSignupVisible(true);
+    setVisible(true);
   };
 
   return (

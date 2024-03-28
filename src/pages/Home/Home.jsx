@@ -17,7 +17,9 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}?page=${currentPage}&limit=${limit}`
+          `${
+            import.meta.env.VITE_API_URL
+          }offers?page=${currentPage}&limit=${limit}`
         );
         if (isMounted) {
           setArticles(response.data.offers);

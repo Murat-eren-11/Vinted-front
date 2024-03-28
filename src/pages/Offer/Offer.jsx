@@ -15,7 +15,9 @@ const Offer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(import.meta.env.VITE_API_URL);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}offers`
+        );
         if (Array.isArray(response.data)) {
           setArticles(response.data);
         } else if (typeof response.data === "object") {

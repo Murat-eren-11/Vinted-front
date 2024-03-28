@@ -13,7 +13,7 @@ const Signup = ({ visible, setVisible }) => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/user/signup`,
+        `${import.meta.env.VITE_API_URL}user/signup`,
         {
           username: username,
           email: email,

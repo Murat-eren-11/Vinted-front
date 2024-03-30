@@ -12,12 +12,13 @@ const Offer = () => {
       try {
         console.log("tentative de fetch");
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}offers/${id}`
+          `${import.meta.env.VITE_API_URL}offer/${id}`
         );
         console.log("c'est fetch");
         setArticles(response.data);
       } catch (error) {
         console.log(error.message);
+        console.log("Erreur lors de la récupération des données :", error);
       }
     };
 
@@ -29,7 +30,11 @@ const Offer = () => {
       <section className="offrecontainer">
         <div className="offerpicture">
           <img
-            src={articles && articles.product_image.secure_url}
+            src={
+              articles &&
+              articles.product_image &&
+              articles.product_image.secure_url
+            }
             className="imgofr"
             alt=""
           />
@@ -41,6 +46,7 @@ const Offer = () => {
           </div>
           <div className="listinfo">
             {articles &&
+              articles.product_details &&
               articles.product_details.map((detail) => {
                 const keys = Object.keys(detail);
                 const keyName = keys[0];
@@ -60,11 +66,21 @@ const Offer = () => {
             </p>
             <div className="offeruser">
               <img
-                src={articles && articles.owner.account.avatar?.url}
+                src={
+                  articles &&
+                  articles.owner &&
+                  articles.owner.account &&
+                  articles.owner.account.avatar?.url
+                }
                 alt=""
                 className="avatar"
               />
-              <span>{articles && articles.owner.account.username}</span>
+              <span>
+                {articles &&
+                  articles.owner &&
+                  articles.owner.account &&
+                  articles.owner.account.username}
+              </span>
             </div>
           </div>
           <button className="buy">Acheter</button>

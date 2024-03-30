@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const Header = ({ visible, setVisible, logVisible, setLogVisible }) => {
   const location = useLocation();
-
+  // ternaire pour la connexion, si connecter on fait un bouton déconnecter solo
   const isOfferPage = location.pathname.includes("/offer/");
 
   return (

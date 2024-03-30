@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Offer = () => {
-  const [articles, setArticles] = useState();
+  const [articles, setArticles] = useState({});
   const { id } = useParams();
 
   useEffect(() => {
@@ -14,9 +14,10 @@ const Offer = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}offers/${id}`
         );
+        console.log("c'est fetch");
         setArticles(response.data);
       } catch (error) {
-        console.error("pourquoi j'ai pas :", error);
+        console.log(error.message);
       }
     };
 
@@ -40,12 +41,12 @@ const Offer = () => {
           </div>
           <div className="listinfo">
             {articles &&
-              articles.product_details.map((detail, index) => {
+              articles.product_details.map((detail) => {
                 const keys = Object.keys(detail);
                 const keyName = keys[0];
 
                 return (
-                  <p key={index}>
+                  <p key={keyName}>
                     {keyName}: {detail[keyName]}
                   </p>
                 );

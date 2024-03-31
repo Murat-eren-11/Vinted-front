@@ -1,7 +1,6 @@
 import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { Range, getTrackBackground } from "react-range";
 
 const Header = ({

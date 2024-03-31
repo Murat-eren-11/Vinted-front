@@ -13,7 +13,7 @@ function App() {
   const [logVisible, setLogVisible] = useState(false);
   const [token, setToken] = useState(Cookies.get("vinted-token") || null);
   const [searchTitle, setSearchTitle] = useState("");
-  const [priceRange, setPriceRange] = useState([10, 100]);
+  const [priceRange, setPriceRange] = useState([0, 100]);
   const [sortValue, setSortValue] = useState("price-desc");
 
   const handleToken = (token) => {

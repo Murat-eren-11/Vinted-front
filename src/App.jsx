@@ -12,6 +12,9 @@ function App() {
   const [visible, setVisible] = useState(false);
   const [logVisible, setLogVisible] = useState(false);
   const [token, setToken] = useState(Cookies.get("vinted-token") || null);
+  const [searchTitle, setSearchTitle] = useState("");
+  const [priceRange, setPriceRange] = useState([10, 100]);
+  const [sortValue, setSortValue] = useState("price-desc");
 
   const handleToken = (token) => {
     if (token) {
@@ -32,6 +35,12 @@ function App() {
         setLogVisible={setLogVisible}
         token={token}
         handleToken={handleToken}
+        searchTitle={searchTitle}
+        setSearchTitle={setSearchTitle}
+        priceRange={priceRange}
+        setPriceRange={setPriceRange}
+        sortValue={sortValue}
+        setSortValue={setSortValue}
       />
       <Routes>
         <Route path="/" element={<Home />} />

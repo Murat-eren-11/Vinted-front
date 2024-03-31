@@ -19,18 +19,21 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}offers`
         );
-        console.log(response.data);
         if (isMounted) {
           const filteredArticles = response.data.offers.filter((article) =>
             article.product_name
               .toLowerCase()
               .includes(searchTitle.toLowerCase())
           );
+          console.log("Articles filtrés par titre :", filteredArticles); // Ajout du console.log() pour vérifier les articles filtrés par titre
+
           const priceFilteredArticles = filteredArticles.filter(
             (article) =>
               article.product_price >= priceRange[0] &&
               article.product_price <= priceRange[1]
           );
+          console.log("Articles filtrés par prix :", priceFilteredArticles); // Ajout du console.log() pour vérifier les articles filtrés par prix
+
           const sortedArticles = priceFilteredArticles.sort((a, b) => {
             if (sortValue === "price-asc") {
               return a.product_price - b.product_price;
@@ -38,12 +41,14 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
               return b.product_price - a.product_price;
             }
           });
+          console.log("Articles triés :", sortedArticles); // Ajout du console.log() pour vérifier les articles triés
+
           const startIndex = (currentPage - 1) * limit;
           const paginatedArticles = filteredArticles.slice(
             startIndex,
             startIndex + limit
           );
-
+          console.log("Articles paginés :", paginatedArticles);
           setArticles(paginatedArticles);
           setTotalPages(Math.ceil(sortedArticles.length / limit));
         }

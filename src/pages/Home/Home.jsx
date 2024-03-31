@@ -25,38 +25,38 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
               .toLowerCase()
               .includes(searchTitle.toLowerCase())
           );
-          console.log("Articles filtrés par titre :", filteredArticles); // Ajout du console.log() pour vérifier les articles filtrés par titre
-
           const priceFilteredArticles = filteredArticles.filter(
             (article) =>
               article.product_price >= priceRange[0] &&
               article.product_price <= priceRange[1]
           );
-          console.log("Articles filtrés par prix :", priceFilteredArticles); // Ajout du console.log() pour vérifier les articles filtrés par prix
-
-          const sortedArticles = priceFilteredArticles.sort((a, b) => {
-            if (sortValue === "price-asc") {
-              return a.product_price - b.product_price;
-            } else {
-              return b.product_price - a.product_price;
-            }
-          });
-          console.log("Articles triés :", filteredArticles); // Ajout du console.log() pour vérifier les articles triés
-
           const startIndex = (currentPage - 1) * limit;
-          const paginatedArticles = filteredArticles.slice(
+          const paginatedArticles = priceFilteredArticles.slice(
             startIndex,
             startIndex + limit
           );
-          console.log("Articles paginés :", paginatedArticles);
-          setArticles(paginatedArticles);
-          setTotalPages(Math.ceil(sortedArticles.length / limit));
+
+          let sortedArticles;
+          if (sortValue === "price-asc") {
+            sortedArticles = paginatedArticles.sort(
+              (a, b) => a.product_price - b.product_price
+            );
+          } else {
+            sortedArticles = paginatedArticles.sort(
+              (a, b) => b.product_price - a.product_price
+            );
+          }
+
+          setArticles(sortedArticles);
+          setTotalPages(Math.ceil(priceFilteredArticles.length / limit));
         }
       } catch (error) {
         console.log(error.response);
       }
     };
+
     fetchData();
+
     return () => {
       isMounted = false;
     };

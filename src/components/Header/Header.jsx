@@ -37,10 +37,10 @@ const Header = ({
   };
 
   const handleSortChange = () => {
-    setLocalSortValue(
-      localSortValue === "price-asc" ? "price-desc" : "price-asc"
-    );
-    onSortChange();
+    const newSortValue =
+      localSortValue === "price-asc" ? "price-desc" : "price-asc";
+    setLocalSortValue(newSortValue);
+    onSortChange(newSortValue);
   };
 
   return (

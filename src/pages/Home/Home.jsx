@@ -22,8 +22,20 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
           }offers?page=${currentPage}&limit=${limit}`
         );
         if (isMounted) {
-          setArticles(response.data.offers);
-          setTotalPages(Math.ceil(response.data.count / limit));
+          const filteredArticles = response.data.offers.filter((article) =>
+            article.product_name
+              .toLowerCase()
+              .includes(searchTitle.toLowerCase())
+          );
+          const sortedArticles = filteredArticles.sort((a, b) => {
+            if (sortValue === "price-asc") {
+              return a.product_price - b.product_price;
+            } else {
+              return b.product_price - a.product_price;
+            }
+          });
+          setArticles(sortedArticles);
+          setTotalPages(Math.ceil(sortedArticles.length / limit));
         }
       } catch (error) {
         console.log(error.response);
@@ -33,7 +45,8 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
     return () => {
       isMounted = false;
     };
-  }, [currentPage]);
+  }, [currentPage, searchTitle, sortValue]);
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };

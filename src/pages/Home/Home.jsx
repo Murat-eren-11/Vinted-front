@@ -17,9 +17,7 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${
-            import.meta.env.VITE_API_URL
-          }offers?page=${currentPage}&limit=${limit}`
+          `${import.meta.env.VITE_API_URL}offers`
         );
         console.log(response.data);
         if (isMounted) {
@@ -40,7 +38,13 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
               return b.product_price - a.product_price;
             }
           });
-          setArticles(sortedArticles);
+          const startIndex = (currentPage - 1) * limit;
+          const paginatedArticles = filteredArticles.slice(
+            startIndex,
+            startIndex + limit
+          );
+
+          setArticles(paginatedArticles);
           setTotalPages(Math.ceil(sortedArticles.length / limit));
         }
       } catch (error) {

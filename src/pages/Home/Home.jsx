@@ -87,6 +87,7 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
         </div>
       </section>
       <section className="tousarticles">
+        {console.log("Articles à afficher :", articles)}
         {articles.map((article, index) => (
           <div className="article" key={index}>
             <Link to={`/offer/${article._id}`}>

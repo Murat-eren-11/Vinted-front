@@ -2,7 +2,7 @@ import "./Signup.css";
 import axios from "axios";
 import { useState } from "react";
 
-const Signup = ({ visible, setVisible }) => {
+const Signup = ({ visible, setVisible, handleToken }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,20 +21,11 @@ const Signup = ({ visible, setVisible }) => {
           newsletter: newsletter,
         }
       );
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      setNewsletter(false);
+
+      handleToken(response.data.token);
       setVisible(false);
     } catch (error) {
       console.log("Erreur lors de l'inscription :", error);
-      if (error.response) {
-        console.log("Erreur de réponse de l'API :", error.response.data);
-      } else if (error.request) {
-        console.log("Erreur de requête :", error.request);
-      } else {
-        console.log("Erreur inattendue :", error.message);
-      }
     }
   };
 

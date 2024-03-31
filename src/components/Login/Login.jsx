@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import Cookies from "js-cookie";
 
-const Login = ({ logVisible, setLogVisible }) => {
+const Login = ({ logVisible, setLogVisible, handleToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -20,8 +20,7 @@ const Login = ({ logVisible, setLogVisible }) => {
           password: password,
         }
       );
-      const { token } = response.data;
-      Cookies.set("token", token, { expires: 7 });
+      handleToken(response.data.token);
       setLogVisible(false);
     } catch (error) {
       if (error.response.status === 401) {

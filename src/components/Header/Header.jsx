@@ -11,42 +11,36 @@ const Header = ({
   setLogVisible,
   token,
   handleToken,
+  onSearchTitleChange,
+  onPriceRangeChange,
+  onSortChange,
+  searchTitle,
+  priceRange,
+  sortValue,
 }) => {
   const location = useLocation();
   const isOfferPage = location.pathname.includes("/offer/");
 
-  const [searchTitle, setSearchTitle] = useState("");
-  const [priceRange, setPriceRange] = useState([10, 100]);
+  const [localSearchTitle, setLocalSearchTitle] = useState(searchTitle);
+  const [localPriceRange, setLocalPriceRange] = useState(priceRange);
+  const [localSortValue, setLocalSortValue] = useState(sortValue);
 
-  const [offers, setOffers] = useState([]);
-  const [sortValue, setSortValue] = useState("price-desc");
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}offers`,
-        {
-          params: {
-            title: searchTitle,
-            priceMin: priceRange[0],
-            priceMax: priceRange[1],
-            sort: sortValue,
-          },
-        }
-      );
-      setOffers(response.data.offers);
-    } catch (error) {
-      console.log(error.message);
-    }
+  const handleSearchTitleChange = (e) => {
+    const title = e.target.value;
+    setLocalSearchTitle(title);
+    onSearchTitleChange(title);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, [searchTitle, priceRange, sortValue]);
+  const handlePriceRangeChange = (range) => {
+    setLocalPriceRange(range);
+    onPriceRangeChange(range);
+  };
 
   const handleSortChange = () => {
-    setSortValue(sortValue === "price-asc" ? "price-desc" : "price-asc");
-    fetchData(); // Appelez fetchData après avoir changé la valeur de tri
+    setLocalSortValue(
+      localSortValue === "price-asc" ? "price-desc" : "price-asc"
+    );
+    onSortChange();
   };
 
   return (
@@ -60,14 +54,14 @@ const Header = ({
         <input
           type="text"
           className="barrerecherche"
-          value={searchTitle}
-          onChange={(e) => setSearchTitle(e.target.value)}
+          value={localSearchTitle}
+          onChange={handleSearchTitleChange}
         />
         {!isOfferPage && (
           <div className="tri">
             <span className="tritext">
               Trier par prix :{" "}
-              {sortValue === "price-asc" ? "croissant" : "décroissant"}
+              {localSortValue === "price-asc" ? "croissant" : "décroissant"}
             </span>
             <input
               type="checkbox"
@@ -79,11 +73,9 @@ const Header = ({
               step={5}
               min={0}
               max={2000}
-              values={priceRange}
-              onChange={(values) => setPriceRange(values)}
-              onFinalChange={(values) => {
-                setPriceRange(values);
-              }}
+              values={localPriceRange}
+              onChange={handlePriceRangeChange}
+              onFinalChange={handlePriceRangeChange}
               renderTrack={({ props, children }) => {
                 return (
                   <div
@@ -91,7 +83,7 @@ const Header = ({
                     {...props}
                     style={{
                       background: getTrackBackground({
-                        values: priceRange,
+                        values: localPriceRange,
                         colors: ["#ccc", "#09b0ba", "#ccc"],
                         min: 0,
                         max: 2000,
@@ -105,7 +97,7 @@ const Header = ({
               renderThumb={({ props, index }) => (
                 <div className="point" {...props}>
                   <div className="bulle">
-                    {priceRange[index].toFixed(0) + "€"}
+                    {localPriceRange[index].toFixed(0) + "€"}
                   </div>
                 </div>
               )}

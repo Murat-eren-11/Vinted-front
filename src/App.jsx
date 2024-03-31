@@ -26,6 +26,18 @@ function App() {
     }
   };
 
+  const handleSearchTitleChange = (title) => {
+    setSearchTitle(title);
+  };
+
+  const handlePriceRangeChange = (range) => {
+    setPriceRange(range);
+  };
+
+  const handleSortChange = () => {
+    setSortValue(sortValue === "price-asc" ? "price-desc" : "price-asc");
+  };
+
   return (
     <Router>
       <Header
@@ -35,15 +47,24 @@ function App() {
         setLogVisible={setLogVisible}
         token={token}
         handleToken={handleToken}
+        onSearchTitleChange={handleSearchTitleChange}
+        onPriceRangeChange={handlePriceRangeChange}
+        onSortChange={handleSortChange}
         searchTitle={searchTitle}
-        setSearchTitle={setSearchTitle}
         priceRange={priceRange}
-        setPriceRange={setPriceRange}
         sortValue={sortValue}
-        setSortValue={setSortValue}
       />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              searchTitle={searchTitle}
+              priceRange={priceRange}
+              sortValue={sortValue}
+            />
+          }
+        />
         <Route path="/offer/:id" element={<Offer />} />
         <Route path="*" element={<p>Rien a voir ici, circulez</p>} />
       </Routes>

@@ -20,32 +20,25 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
           `${import.meta.env.VITE_API_URL}offers`
         );
         if (isMounted) {
-          // en premier on récupère toutes les données depuis l'api
+          // 1. Récupérer toutes les données depuis l'API
           const allArticles = response.data.offers;
 
-          // filtrage par titre
+          // 2. Filtrer les données par titre
           const filteredArticles = allArticles.filter((article) =>
             article.product_name
               .toLowerCase()
               .includes(searchTitle.toLowerCase())
           );
 
-          // filtrage par prix
+          // 3. Filtrer les données par prix
           const priceFilteredArticles = filteredArticles.filter(
             (article) =>
               article.product_price >= priceRange[0] &&
               article.product_price <= priceRange[1]
           );
 
-          // on pagine
-          const startIndex = (currentPage - 1) * limit;
-          const paginatedArticles = priceFilteredArticles.slice(
-            startIndex,
-            startIndex + limit
-          );
-
-          // on trie les paginer, peut-être ici le soucis ?
-          const sortedArticles = paginatedArticles.sort((a, b) => {
+          // 4. Trier toutes les données filtrées
+          const sortedArticles = priceFilteredArticles.sort((a, b) => {
             if (sortValue === "price-asc") {
               return a.product_price - b.product_price;
             } else {
@@ -53,8 +46,15 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
             }
           });
 
-          setArticles(sortedArticles);
-          setTotalPages(Math.ceil(priceFilteredArticles.length / limit));
+          // 5. Paginer les données triées
+          const startIndex = (currentPage - 1) * limit;
+          const paginatedArticles = sortedArticles.slice(
+            startIndex,
+            startIndex + limit
+          );
+
+          setArticles(paginatedArticles);
+          setTotalPages(Math.ceil(sortedArticles.length / limit));
         }
       } catch (error) {
         console.log(error.response);

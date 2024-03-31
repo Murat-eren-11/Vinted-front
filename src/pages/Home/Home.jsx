@@ -45,7 +45,7 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
     return () => {
       isMounted = false;
     };
-  }, [currentPage, searchTitle, sortValue]);
+  }, [currentPage, searchTitle, priceRange, sortValue]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);

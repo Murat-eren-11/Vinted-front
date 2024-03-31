@@ -27,7 +27,12 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
               .toLowerCase()
               .includes(searchTitle.toLowerCase())
           );
-          const sortedArticles = filteredArticles.sort((a, b) => {
+          const priceFilteredArticles = filteredArticles.filter(
+            (article) =>
+              article.product_price >= priceRange[0] &&
+              article.product_price <= priceRange[1]
+          );
+          const sortedArticles = priceFilteredArticles.sort((a, b) => {
             if (sortValue === "price-asc") {
               return a.product_price - b.product_price;
             } else {

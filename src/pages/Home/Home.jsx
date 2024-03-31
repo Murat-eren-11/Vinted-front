@@ -41,7 +41,7 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
               return b.product_price - a.product_price;
             }
           });
-          console.log("Articles triés :", sortedArticles); // Ajout du console.log() pour vérifier les articles triés
+          console.log("Articles triés :", filteredArticles); // Ajout du console.log() pour vérifier les articles triés
 
           const startIndex = (currentPage - 1) * limit;
           const paginatedArticles = filteredArticles.slice(

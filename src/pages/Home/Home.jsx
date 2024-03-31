@@ -21,6 +21,7 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
             import.meta.env.VITE_API_URL
           }offers?page=${currentPage}&limit=${limit}`
         );
+        console.log(response.data);
         if (isMounted) {
           const filteredArticles = response.data.offers.filter((article) =>
             article.product_name

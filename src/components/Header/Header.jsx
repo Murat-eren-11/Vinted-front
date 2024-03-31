@@ -31,6 +31,7 @@ const Header = ({
   };
 
   const handlePriceRangeChange = (range) => {
+    console.log(range);
     setLocalPriceRange(range);
     onPriceRangeChange(range);
   };

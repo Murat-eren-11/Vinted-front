@@ -20,32 +20,38 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
           `${import.meta.env.VITE_API_URL}offers`
         );
         if (isMounted) {
-          const filteredArticles = response.data.offers.filter((article) =>
+          // en premier on récupère toutes les données depuis l'api
+          const allArticles = response.data.offers;
+
+          // filtrage par titre
+          const filteredArticles = allArticles.filter((article) =>
             article.product_name
               .toLowerCase()
               .includes(searchTitle.toLowerCase())
           );
+
+          // filtrage par prix
           const priceFilteredArticles = filteredArticles.filter(
             (article) =>
               article.product_price >= priceRange[0] &&
               article.product_price <= priceRange[1]
           );
+
+          // on pagine
           const startIndex = (currentPage - 1) * limit;
           const paginatedArticles = priceFilteredArticles.slice(
             startIndex,
             startIndex + limit
           );
 
-          let sortedArticles;
-          if (sortValue === "price-asc") {
-            sortedArticles = paginatedArticles.sort(
-              (a, b) => a.product_price - b.product_price
-            );
-          } else {
-            sortedArticles = paginatedArticles.sort(
-              (a, b) => b.product_price - a.product_price
-            );
-          }
+          // on trie les paginer, peut-être ici le soucis ?
+          const sortedArticles = paginatedArticles.sort((a, b) => {
+            if (sortValue === "price-asc") {
+              return a.product_price - b.product_price;
+            } else {
+              return b.product_price - a.product_price;
+            }
+          });
 
           setArticles(sortedArticles);
           setTotalPages(Math.ceil(priceFilteredArticles.length / limit));
@@ -54,9 +60,7 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
         console.log(error.response);
       }
     };
-
     fetchData();
-
     return () => {
       isMounted = false;
     };

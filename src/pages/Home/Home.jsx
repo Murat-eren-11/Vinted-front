@@ -20,24 +20,20 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
           `${import.meta.env.VITE_API_URL}offers`
         );
         if (isMounted) {
-          // 1. Récupérer toutes les données depuis l'API
           const allArticles = response.data.offers;
 
-          // 2. Filtrer les données par titre
           const filteredArticles = allArticles.filter((article) =>
             article.product_name
               .toLowerCase()
               .includes(searchTitle.toLowerCase())
           );
 
-          // 3. Filtrer les données par prix
           const priceFilteredArticles = filteredArticles.filter(
             (article) =>
               article.product_price >= priceRange[0] &&
               article.product_price <= priceRange[1]
           );
 
-          // 4. Trier toutes les données filtrées
           const sortedArticles = priceFilteredArticles.sort((a, b) => {
             if (sortValue === "price-asc") {
               return a.product_price - b.product_price;
@@ -46,7 +42,6 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
             }
           });
 
-          // 5. Paginer les données triées
           const startIndex = (currentPage - 1) * limit;
           const paginatedArticles = sortedArticles.slice(
             startIndex,
@@ -83,7 +78,6 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
   return (
     <main>
       <section className="banniere">
-        <img src="../../../banner.jpg" alt="" className="imageaccueil" />
         <img src="../../../dechirure.svg" alt="" className="dechire" />
         <div className="carreaccueil">
           Prêt à faire du tri dans vos placards ?
@@ -91,7 +85,6 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
         </div>
       </section>
       <section className="tousarticles">
-        {console.log("Articles à afficher :", articles)}
         {articles.map((article, index) => (
           <div className="article" key={index}>
             <Link to={`/offer/${article._id}`}>

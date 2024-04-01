@@ -1,6 +1,9 @@
 .banniere {
   height: 600px;
   width: 100%;
+  background: url("../../../banner.jpg");
+  background-position: 50%;
+  background-size: cover;
 }
 .imageaccueil {
   object-fit: cover;
@@ -9,9 +12,11 @@
 }
 
 .dechire {
-  bottom: 102px;
+  bottom: 150px;
+  height: 80px;
   pointer-events: none;
-  position: relative;
+  position: absolute;
+  right: 0;
 }
 
 .carreaccueil {

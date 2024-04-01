@@ -1,9 +1,8 @@
 import "./Login.css";
 import axios from "axios";
 import { useState } from "react";
-import Cookies from "js-cookie";
 
-const Login = ({ logVisible, setLogVisible, handleToken }) => {
+const Login = ({ setLogVisible, handleToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -20,10 +19,12 @@ const Login = ({ logVisible, setLogVisible, handleToken }) => {
           password: password,
         }
       );
+      console.log("Response from server:", response);
       handleToken(response.data.token);
       setLogVisible(false);
     } catch (error) {
-      if (error.response.status === 401) {
+      console.log("Error response from server:", error.response);
+      if (error.response && error.response.status === 401) {
         setErrorMessage("Email ou mot de passe incorrect.");
         setShowErrorBorder(true);
       } else {
@@ -57,9 +58,7 @@ const Login = ({ logVisible, setLogVisible, handleToken }) => {
               placeholder="******"
               style={{ border: showErrorBorder ? "2px solid red" : "none" }}
             />
-            <button className="connecter" type="submit">
-              Connectez-vous{" "}
-            </button>
+            <input type="submit" value="Se connecter" className="connecter" />
             {errorMessage && <p className="error-message">{errorMessage}</p>}
           </form>
         </div>

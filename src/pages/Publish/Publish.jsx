@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 
 const Publish = () => {
   const token = Cookies.get("vinted-token");
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState();
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState(0);
@@ -22,20 +22,20 @@ const Publish = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    try {
-      formData.append("picture", selectedFile);
-      formData.append("title", productName);
-      formData.append("description", productDescription);
-      formData.append("price", productPrice);
-      formData.append("brand", brand);
-      formData.append("condition", condition);
-      formData.append("city", city);
-      formData.append("size", size);
-      formData.append("color", color);
-      console.log("formData après l'ajout des images:", formData); // Vérifiez que les images sont correctement ajoutées au FormData
+    formData.append("picture", selectedFile);
+    formData.append("title", productName);
+    formData.append("description", productDescription);
+    formData.append("price", productPrice);
+    formData.append("brand", brand);
+    formData.append("condition", condition);
+    formData.append("city", city);
+    formData.append("size", size);
+    formData.append("color", color);
+    console.log("formData après l'ajout des images:", formData); // Vérifiez que les images sont correctement ajoutées au FormData
 
+    try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}publish`,
+        `${import.meta.env.VITE_API_URL}offer/publish`,
         formData,
         {
           headers: {

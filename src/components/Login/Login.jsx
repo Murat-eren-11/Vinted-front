@@ -24,6 +24,7 @@ const Login = ({ setLogVisible, handleToken }) => {
       setLogVisible(false);
     } catch (error) {
       console.log("Error response from server:", error.response);
+      console.log("l'erreur de la réponse:", error.response.data);
       if (error.response && error.response.status === 401) {
         setErrorMessage("Email ou mot de passe incorrect.");
         setShowErrorBorder(true);
@@ -42,7 +43,7 @@ const Login = ({ setLogVisible, handleToken }) => {
     >
       <div className="form-container" onClick={(e) => e.stopPropagation()}>
         <div>
-          <h2>S'inscrire</h2>
+          <h2>Se connecter</h2>
           <form onSubmit={userSignUp}>
             <input
               type="email"

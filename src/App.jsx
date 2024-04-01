@@ -69,7 +69,9 @@ function App() {
         <Route path="*" element={<p>Rien a voir ici, circulez</p>} />
       </Routes>
       {visible && <Signup setVisible={setVisible} />}
-      {logVisible && <Login setLogVisible={setLogVisible} />}
+      {logVisible && (
+        <Login setLogVisible={setLogVisible} handleToken={handleToken} />
+      )}
     </Router>
   );
 }

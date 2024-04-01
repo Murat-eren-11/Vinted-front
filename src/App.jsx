@@ -7,6 +7,7 @@ import Signup from "./components/Signup/Signup";
 import { useState } from "react";
 import Login from "./components/Login/Login";
 import Cookies from "js-cookie";
+import Publish from "./pages/Publish/Publish";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -66,6 +67,7 @@ function App() {
           }
         />
         <Route path="/offer/:id" element={<Offer />} />
+        <Route path="/publish" element={<Publish />} />
         <Route path="*" element={<p>Rien a voir ici, circulez</p>} />
       </Routes>
       {visible && <Signup setVisible={setVisible} />}

@@ -42,6 +42,14 @@ const Header = ({
     onSortChange(newSortValue);
   };
 
+  const handleSellClick = () => {
+    if (token) {
+      return;
+    } else {
+      setLogVisible(true);
+    }
+  };
+
   return (
     <header>
       <div className="gauche">
@@ -125,7 +133,11 @@ const Header = ({
       )}
 
       <div className="selltoo">
-        <button className="sell">Vends tes articles</button>
+        <Link to={token ? "/publish" : "/connexion"}>
+          <button className="sell" onClick={handleSellClick}>
+            Vends tes articles
+          </button>
+        </Link>
       </div>
     </header>
   );

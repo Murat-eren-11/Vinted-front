@@ -19,13 +19,10 @@ const Login = ({ setLogVisible, handleToken }) => {
           password: password,
         }
       );
-      console.log("Response from server:", response);
       handleToken(response.data.token);
       setLogVisible(false);
     } catch (error) {
-      console.log("Error response from server:", error.response);
-      console.log("l'erreur de la réponse:", error.response.data);
-      if (error.response && error.response.status === 401) {
+      if (error.response && error.response.status === 400) {
         setErrorMessage("Email ou mot de passe incorrect.");
         setShowErrorBorder(true);
       } else {

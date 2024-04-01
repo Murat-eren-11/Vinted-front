@@ -10,11 +10,9 @@ const Offer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("tentative de fetch");
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}offer/${id}`
         );
-        console.log("c'est fetch");
         setArticles(response.data);
       } catch (error) {
         console.log(error.message);

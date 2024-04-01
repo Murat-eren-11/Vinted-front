@@ -2,6 +2,7 @@ import "./Publish.css";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Publish = () => {
   const token = Cookies.get("vinted-token");
@@ -14,6 +15,7 @@ const Publish = () => {
   const [city, setCity] = useState("");
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
@@ -46,6 +48,7 @@ const Publish = () => {
       );
 
       console.log("l'annonce:", response.data);
+      navigate(`/offre/${response.data.id}`);
     } catch (error) {
       console.log("Erreur de l'annonce: ", error.message);
     }

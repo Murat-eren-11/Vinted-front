@@ -1,13 +1,14 @@
 import "./Login.css";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setLogVisible, handleToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [showErrorBorder, setShowErrorBorder] = useState(false);
-
+  const navigate = useNavigate();
   const userSignUp = async (e) => {
     e.preventDefault();
 
@@ -21,6 +22,7 @@ const Login = ({ setLogVisible, handleToken }) => {
       );
       handleToken(response.data.token);
       setLogVisible(false);
+      navigate("/publish");
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage("Email ou mot de passe incorrect.");

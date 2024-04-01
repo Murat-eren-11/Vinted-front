@@ -7,11 +7,14 @@ const Signup = ({ visible, setVisible, handleToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState(false);
+  const [avatar, setAvatar] = useState(null);
 
   const userSignUp = async (e) => {
     e.preventDefault();
-    console.log(`${import.meta.env.VITE_API_URL}user/signup`);
     try {
+      const formData = new FormData();
+      formData.append("avatar", avatar);
+
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}user/signup`,
         {
@@ -19,6 +22,11 @@ const Signup = ({ visible, setVisible, handleToken }) => {
           email: email,
           password: password,
           newsletter: newsletter,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
 
@@ -46,6 +54,7 @@ const Signup = ({ visible, setVisible, handleToken }) => {
               placeholder="nom d'utilisateur"
               onChange={(e) => setUsername(e.target.value)}
             />
+            <input type="file" onChange={(e) => setAvatar(e.target.files[0])} />
             <input
               type="email"
               value={email}

@@ -13,6 +13,7 @@
 .imgofr {
   height: 600px;
   object-fit: cover;
+  width: 100%;
 }
 .infosoffre {
   background-color: #fff;

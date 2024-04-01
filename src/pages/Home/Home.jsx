@@ -37,9 +37,10 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
           const sortedArticles = priceFilteredArticles.sort((a, b) => {
             if (sortValue === "price-asc") {
               return a.product_price - b.product_price;
-            } else {
+            } else if (sortValue === "price-desc") {
               return b.product_price - a.product_price;
             }
+            return 0;
           });
 
           const startIndex = (currentPage - 1) * limit;

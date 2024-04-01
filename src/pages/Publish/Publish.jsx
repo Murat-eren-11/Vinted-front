@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Publish = () => {
   const token = Cookies.get("vinted-token");
-  const [selectedFile, setSelectedFile] = useState();
+  const [selectedFile, setSelectedFile] = useState([]);
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState(0);
@@ -18,13 +18,17 @@ const Publish = () => {
   const navigate = useNavigate();
 
   const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+    const newFiles = Array.from(e.target.files);
+
+    setSelectedFile((prevFiles) => [...prevFiles, ...newFiles]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("picture", selectedFile);
+    for (let i = 0; i < selectedFile.length; i++) {
+      formData.append("picture", selectedFile[i]);
+    }
     formData.append("title", productName);
     formData.append("description", productDescription);
     formData.append("price", productPrice);
@@ -58,10 +62,22 @@ const Publish = () => {
     <div>
       <h2>Publier une annonce</h2>
       <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleFileChange} />
-        {selectedFile && (
-          <img src={URL.createObjectURL(selectedFile)} alt="Preview" />
-        )}
+        <label className="file-upload">
+          <div className="file-drop-zone">
+            <input type="file" multiple onChange={handleFileChange} />
+            <span>Déposer vos images</span>
+            <img src="drop-icon.png" alt="Drop Icon" />
+          </div>
+          {selectedFile &&
+            Array.from(selectedFile).map((file, index) => (
+              <img
+                key={index}
+                src={URL.createObjectURL(file)}
+                alt={`Preview ${index}`}
+              />
+            ))}
+        </label>
+        {console.log(selectedFile)}
         <input
           type="text"
           value={productName}

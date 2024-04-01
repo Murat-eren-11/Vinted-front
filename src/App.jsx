@@ -15,7 +15,7 @@ function App() {
   const [token, setToken] = useState(Cookies.get("vinted-token") || null);
   const [searchTitle, setSearchTitle] = useState("");
   const [priceRange, setPriceRange] = useState([0, 300]);
-  const [sortValue, setSortValue] = useState("price-desc");
+  const [sortValue, setSortValue] = useState(null);
 
   const handleToken = (token) => {
     if (token) {
@@ -36,7 +36,11 @@ function App() {
   };
 
   const handleSortChange = () => {
-    setSortValue(sortValue === "price-asc" ? "price-desc" : "price-asc");
+    if (sortValue === null) {
+      setSortValue("price-asc");
+    } else {
+      setSortValue(sortValue === "price-asc" ? "price-desc" : "price-asc");
+    }
   };
 
   return (

@@ -9,10 +9,6 @@ import Login from "./components/Login/Login";
 import Cookies from "js-cookie";
 import Publish from "./pages/Publish/Publish";
 import Payment from "./pages/Payment/Payment";
-//ToDo : CSS pour le bouton "se déconnecter"
-//CSS pour publish
-//CSS pour l'upload de l'avatar
-//CSS Responsive
 
 function App() {
   const [visible, setVisible] = useState(false);

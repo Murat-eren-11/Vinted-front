@@ -41,15 +41,16 @@ const Login = ({ setLogVisible, handleToken }) => {
       }}
     >
       <div className="form-container" onClick={(e) => e.stopPropagation()}>
-        <div>
+        <div className="form-card">
           <h2>Se connecter</h2>
-          <form onSubmit={userSignUp}>
+          <form onSubmit={userSignUp} className="formplease">
             <input
               type="email"
               value={email}
               placeholder="moi@gmail.com"
               onChange={(e) => setEmail(e.target.value)}
               style={{ border: showErrorBorder ? "2px solid red" : "none" }}
+              className="inputco"
             />
             <input
               type="password"
@@ -57,9 +58,12 @@ const Login = ({ setLogVisible, handleToken }) => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="******"
               style={{ border: showErrorBorder ? "2px solid red" : "none" }}
+              className="inputco"
             />
-            <input type="submit" value="Se connecter" className="connecter" />
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <div className="boutonerror">
+              <input type="submit" value="Se connecter" className="connecter" />
+              {errorMessage && <p className="error-message">{errorMessage}</p>}
+            </div>
           </form>
         </div>
       </div>

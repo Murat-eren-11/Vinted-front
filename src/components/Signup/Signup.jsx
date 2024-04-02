@@ -45,16 +45,21 @@ const Signup = ({ visible, setVisible, handleToken }) => {
       }}
     >
       <div className="form-container" onClick={(e) => e.stopPropagation()}>
-        <div>
+        <div className="form-card">
           <h2>S'inscrire</h2>
-          <form onSubmit={userSignUp}>
+          <form onSubmit={userSignUp} className="formplease">
             <input
+              className="usernamesignup"
               type="text"
               value={username}
               placeholder="nom d'utilisateur"
               onChange={(e) => setUsername(e.target.value)}
             />
-            <input type="file" onChange={(e) => setAvatar(e.target.files[0])} />
+            <input
+              type="file"
+              onChange={(e) => setAvatar(e.target.files[0])}
+              className="avatarsignup"
+            />
             <input
               type="email"
               value={email}
@@ -76,7 +81,7 @@ const Signup = ({ visible, setVisible, handleToken }) => {
               />{" "}
               <p>S'inscrire à notre newsletter</p>
             </div>
-            <small>
+            <small className="cgusignup">
               En m'inscrivant je confirme avoir lu et accepté les Termes &
               Conditions et Politique de Confidentialité de Vinted. Je confirme
               avoir au moins 18 ans.

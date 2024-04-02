@@ -101,7 +101,7 @@ const Home = ({ searchTitle, priceRange, sortValue, token }) => {
                   alt=""
                 />
                 <div className="prixtaillemarque">
-                  <span>{article.product_price}</span>
+                  <span>{article.product_price} €</span>
                   {article.product_details.map((detail, detailIndex) => {
                     if (detail.TAILLE) {
                       return <span key={detailIndex}>{detail.TAILLE}</span>;

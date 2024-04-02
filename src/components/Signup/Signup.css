@@ -28,6 +28,10 @@
   align-items: center;
 }
 
+.usernamesignup {
+  height: 50px;
+}
+
 .form-container i {
   color: rgb(0, 0, 0, 0.5);
   font-size: 20px;
@@ -63,9 +67,8 @@ input {
   width: 21px;
   cursor: pointer;
 }
-small {
+.cgusignup {
   margin-bottom: 30px;
-  width: 40%;
   font-size: 12px;
   text-align: justify;
 }
@@ -78,6 +81,7 @@ small {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  margin-top: 30px;
 }
 .hidden {
   display: none;

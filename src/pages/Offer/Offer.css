@@ -83,3 +83,6 @@
   width: 100%;
   cursor: pointer;
 }
+.error-message {
+  color: red;
+}

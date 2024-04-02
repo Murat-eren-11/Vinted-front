@@ -8,6 +8,13 @@ import { useState } from "react";
 import Login from "./components/Login/Login";
 import Cookies from "js-cookie";
 import Publish from "./pages/Publish/Publish";
+import Payment from "./pages/Payment/Payment";
+//ToDo : CSS pour le bouton "se déconnecter"
+//Quand quelqu'un fait /publish redirection Home + modale
+//CSS pour publish
+//CSS pour l'upload de l'avatar
+//CSS Responsive
+//Strip
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -71,7 +78,27 @@ function App() {
           }
         />
         <Route path="/offer/:id" element={<Offer />} />
-        <Route path="/publish" element={<Publish />} />
+        <Route
+          path="/publish"
+          element={
+            token ? (
+              <Publish token={token} />
+            ) : (
+              <>
+                <Login
+                  setLogVisible={setLogVisible}
+                  handleToken={handleToken}
+                />{" "}
+                <Home
+                  searchTitle={searchTitle}
+                  priceRange={priceRange}
+                  sortValue={sortValue}
+                />
+              </>
+            )
+          }
+        />{" "}
+        <Route path="/payment" element={<Payment />} />{" "}
         <Route path="*" element={<p>Rien a voir ici, circulez</p>} />
       </Routes>
       {visible && <Signup setVisible={setVisible} />}

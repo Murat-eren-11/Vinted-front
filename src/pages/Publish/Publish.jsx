@@ -1,11 +1,9 @@
 import "./Publish.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-const Publish = () => {
-  const token = Cookies.get("vinted-token");
+const Publish = ({ token }) => {
   const [selectedFile, setSelectedFile] = useState([]);
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
@@ -52,13 +50,19 @@ const Publish = () => {
       );
 
       console.log("l'annonce:", response.data);
-      navigate(`/offre/${response.data.id}`);
+      navigate(`/offre/${response.data._id}`);
     } catch (error) {
       console.log("Erreur de l'annonce: ", error.message);
     }
   };
 
-  return (
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, [token, navigate]);
+
+  return token ? (
     <div>
       <h2>Publier une annonce</h2>
       <form onSubmit={handleSubmit}>
@@ -85,6 +89,8 @@ const Publish = () => {
           placeholder="Nom du produit"
         />
         <textarea
+          rows={6}
+          cols={30}
           value={productDescription}
           onChange={(e) => setProductDescription(e.target.value)}
           placeholder="Description du produit"
@@ -128,6 +134,6 @@ const Publish = () => {
         <button type="submit">Publier</button>
       </form>
     </div>
-  );
+  ) : null;
 };
 export default Publish;

@@ -1,5 +1,5 @@
 import "./Offer.css";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
@@ -7,6 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 
 const Offer = () => {
   const [articles, setArticles] = useState({});
+
   const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +43,6 @@ const Offer = () => {
     },
   };
   const deviceType = "desktop";
-  console.log(articles);
   return (
     <main className="offremain">
       <section className="offrecontainer">
@@ -129,7 +129,15 @@ const Offer = () => {
               </span>
             </div>
           </div>
-          <button className="buy">Acheter</button>
+          <Link
+            to="/payment"
+            state={{
+              title: articles.product_name,
+              price: articles.product_price,
+            }}
+          >
+            Acheter
+          </Link>
         </div>
       </section>
     </main>

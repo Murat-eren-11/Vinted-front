@@ -139,7 +139,7 @@ const Header = ({
       )}
 
       <div className="selltoo">
-        <Link to={token ? "/publish" : "/connexion"}>
+        <Link to={token ? "/publish" : "/"}>
           <button className="sell" onClick={handleSellClick}>
             Vends tes articles
           </button>

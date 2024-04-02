@@ -10,11 +10,9 @@ import Cookies from "js-cookie";
 import Publish from "./pages/Publish/Publish";
 import Payment from "./pages/Payment/Payment";
 //ToDo : CSS pour le bouton "se déconnecter"
-//Quand quelqu'un fait /publish redirection Home + modale
 //CSS pour publish
 //CSS pour l'upload de l'avatar
 //CSS Responsive
-//Strip
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -74,6 +72,7 @@ function App() {
               searchTitle={searchTitle}
               priceRange={priceRange}
               sortValue={sortValue}
+              token={token}
             />
           }
         />

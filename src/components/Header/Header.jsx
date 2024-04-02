@@ -18,7 +18,7 @@ const Header = ({
   sortValue,
 }) => {
   const location = useLocation();
-  const isOfferPage = location.pathname.includes("/offer/");
+  const isHomePage = location.pathname === "/";
 
   const [localSearchTitle, setLocalSearchTitle] = useState(searchTitle);
   const [localPriceRange, setLocalPriceRange] = useState(priceRange);
@@ -63,8 +63,9 @@ const Header = ({
           className="barrerecherche"
           value={localSearchTitle}
           onChange={handleSearchTitleChange}
+          placeholder="Recherche des articles"
         />
-        {!isOfferPage && (
+        {isHomePage && (
           <div className="tri">
             <span className="tritext">
               Trier par prix :{" "}
@@ -115,6 +116,7 @@ const Header = ({
 
       {token ? (
         <button
+          className="sedeco"
           onClick={() => {
             handleToken(null);
           }}

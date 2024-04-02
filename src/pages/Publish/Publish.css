@@ -1,29 +1,74 @@
+.publishpage {
+  background-color: #ebedee;
+}
+
+.publishcontainer {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.publishpage h2 {
+  font-size: 24px;
+  padding-top: 40px;
+}
+.publication {
+  display: block;
+  margin-top: 0em;
+  unicode-bidi: isolate;
+}
+
 .file-upload {
-  position: relative;
+  background-color: #fff;
+  padding: 24px;
+  margin: 20px 0;
+  box-shadow: 0 0 2px gray;
+  display: block;
 }
 
 .file-drop-zone {
-  border: 2px dashed #ccc;
-  background-color: #f9f9f9;
-  padding: 20px;
-  text-align: center;
+  border: 1px #ebedee dashed;
+  border-radius: 3px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inputfiledrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #0ab1ba;
+  border-radius: 4px;
+  height: 45px;
+  width: 200px;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .file-drop-zone input[type="file"] {
   display: none;
 }
+.inputpublish {
+  width: 80%;
+  margin: 10px 0;
+  outline: none;
+  border-bottom: darkgrey 2px solid;
+  padding: 16px 10px;
+  font-size: 16px;
+}
 
-.file-drop-zone span {
-  display: block;
-  font-size: 18px;
-  margin-bottom: 10px;
+.inputfiledrop > span {
+  margin: 0 10px;
+  vertical-align: middle;
+  color: #0ab1ba;
 }
 
 .file-drop-zone img {
-  width: 100px;
-  height: 100px;
-  margin-top: 10px;
+  border: 1px #ebedee dashed;
+  border-radius: 3px;
+  height: 200px;
+  display: flex;
+  align-items: center;
 }
 
 /* Style pour l'effet de survol */
@@ -33,4 +78,70 @@
 
 .file-drop-zone:active {
   background-color: #e0e0e0;
+}
+
+.textsection {
+  background-color: #fff;
+  margin: 20px 0;
+  box-shadow: 0 0 2px gray;
+}
+.textsection > .textinput:not(:last-child) {
+  height: 25px;
+  border-bottom: 1px solid #ebedee;
+  height: 100px;
+  align-items: center;
+}
+.textsection > .textinput {
+  align-items: center;
+}
+.textinput {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+}
+.textinput > p {
+  font-weight: 400;
+  margin: 0;
+  vertical-align: baseline;
+}
+input[type="text" i] {
+  padding-block: 1px;
+  padding-inline: 2px;
+}
+.textinput > input {
+  width: 50%;
+  border: none;
+  border-bottom: 1px solid #ebedee;
+  color: #000;
+  font-family: Maison Neue;
+  font-size: 16px;
+}
+input,
+button {
+  outline: none;
+}
+.textinput > textarea {
+  width: 50%;
+  resize: none;
+  border: none;
+  border-bottom: 1px solid #ebedee;
+  outline: none;
+  color: #000;
+  font-family: Maison Neue;
+  font-size: 16px;
+}
+.bouton {
+  display: flex;
+  justify-content: flex-end;
+}
+.validation {
+  background-color: #0ab1ba;
+  color: #fff;
+  border: none;
+  font: inherit;
+  outline: inherit;
+  border-radius: 4px;
+  padding: 12px;
+  margin: 50px 0;
+  cursor: pointer;
 }

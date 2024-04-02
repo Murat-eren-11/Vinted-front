@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Home = ({ searchTitle, priceRange, sortValue }) => {
+const Home = ({ searchTitle, priceRange, sortValue, token }) => {
   const [articles, setArticles] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -82,7 +82,9 @@ const Home = ({ searchTitle, priceRange, sortValue }) => {
         <img src="../../../dechirure.svg" alt="" className="dechire" />
         <div className="carreaccueil">
           Prêt à faire du tri dans vos placards ?
-          <button className="startsell">Commencez à Vendre</button>
+          <Link to={token ? "/publish" : "/connexion"}>
+            <button className="startsell">Commencez à Vendre</button>
+          </Link>
         </div>
       </section>
       <section className="tousarticles">

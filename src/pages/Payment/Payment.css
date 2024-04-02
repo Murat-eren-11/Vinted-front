@@ -1,0 +1,67 @@
+.paymentpage {
+  background: #ebedee;
+  min-height: calc(100vh - 59px);
+}
+
+.cardpayment {
+  width: 600px;
+  margin: 0 auto;
+  padding: 36px 20px;
+}
+
+.payinfo {
+  background: #ffffff;
+}
+.payinfo > .title {
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  color: #999;
+  padding: 24px 24px 8px;
+}
+.contenu {
+  padding: 5px 24px;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+}
+.payligne {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #666;
+  padding: 4px 0;
+  align-items: center;
+  height: 45px;
+}
+.divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: rgba(17, 17, 17, 0.1);
+  margin: 24px 0;
+}
+.gras {
+  font-weight: 700;
+}
+.partiebasse {
+  background: #ffffff;
+}
+.contenubas {
+  padding: 24px;
+  text-align: justify;
+}
+.cardpayment button {
+  background: #00c06d;
+  border-color: #00c06d;
+  margin-top: 8px;
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  line-height: 22px;
+  height: 44px;
+  padding: 0 14px;
+  color: #fff;
+  border: 1px solid;
+  border-radius: 4px;
+}

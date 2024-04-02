@@ -136,7 +136,7 @@ const Offer = () => {
               price: articles.product_price,
             }}
           >
-            Acheter
+            <button className="buy">Acheter</button>
           </Link>
         </div>
       </section>

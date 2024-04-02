@@ -29,28 +29,29 @@ const CheckoutForm = ({ title, price }) => {
         setErrorMessage(submitError.message);
         return;
       }
-
+      console.log("title is : ", title);
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}v2/payment`,
+        "https://lereacteur-vinted-api.herokuapp.com/v2/payment",
         {
           title: title,
           amount: price,
         }
       );
+
       const clientSecret = response.data.client_secret;
 
       const { error, paymentIntent } = await stripe.confirmPayment({
         elements: elements,
         clientSecret: clientSecret,
 
-        // confirmParams: {
-        //     return_url:
-        // }
+        confirmParams: {
+          return_url: "https://localhost:5173/",
+        },
         redirect: "if_required",
       });
 
       if (error) {
-        setErrorMessage(error.message);
+        setErrorMessage("why", error.message);
       }
 
       if (paymentIntent.status === "succeeded") {
@@ -59,7 +60,7 @@ const CheckoutForm = ({ title, price }) => {
 
       setIsLoading(false);
     } catch (error) {
-      console.log(errorMessage);
+      console.log(error);
     }
   };
 

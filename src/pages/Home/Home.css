@@ -10,7 +10,9 @@
   height: inherit;
   width: 100%;
 }
-
+.startsell {
+  cursor: pointer;
+}
 .dechire {
   bottom: 150px;
   height: 80px;

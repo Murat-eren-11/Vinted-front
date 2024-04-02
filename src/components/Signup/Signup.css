@@ -21,7 +21,7 @@
 }
 .form-container,
 .form-container > div,
-form {
+.form-container > form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -93,7 +93,7 @@ small {
 .modal-open {
   overflow: hidden;
 }
-h2 {
+.modal h2 {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 40px;

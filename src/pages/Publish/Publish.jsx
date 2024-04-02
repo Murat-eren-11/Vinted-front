@@ -35,7 +35,6 @@ const Publish = ({ token }) => {
     formData.append("city", city);
     formData.append("size", size);
     formData.append("color", color);
-    console.log("formData après l'ajout des images:", formData); // Vérifiez que les images sont correctement ajoutées au FormData
 
     try {
       const response = await axios.post(
@@ -63,76 +62,117 @@ const Publish = ({ token }) => {
   }, [token, navigate]);
 
   return token ? (
-    <div>
-      <h2>Publier une annonce</h2>
-      <form onSubmit={handleSubmit}>
-        <label className="file-upload">
-          <div className="file-drop-zone">
-            <input type="file" multiple onChange={handleFileChange} />
-            <span>Déposer vos images</span>
-            <img src="drop-icon.png" alt="Drop Icon" />
-          </div>
-          {selectedFile &&
-            Array.from(selectedFile).map((file, index) => (
-              <img
-                key={index}
-                src={URL.createObjectURL(file)}
-                alt={`Preview ${index}`}
+    <div className="publishpage">
+      <div className="publishcontainer">
+        <h2>Vends ton article</h2>
+        <form className="publication" onSubmit={handleSubmit}>
+          <label className="file-upload">
+            <div className="file-drop-zone">
+              <div className="inputfiledrop">
+                <input
+                  type="file"
+                  className="inputpublish"
+                  multiple
+                  onChange={handleFileChange}
+                />
+                <span>Déposer vos images</span>
+                {selectedFile &&
+                  Array.from(selectedFile).map((file, index) => (
+                    <img
+                      key={index}
+                      src={URL.createObjectURL(file)}
+                      alt={`Preview ${index}`}
+                    />
+                  ))}
+              </div>
+            </div>
+          </label>
+          <div className="textsection">
+            <div className="textinput">
+              <p>Titre</p>
+              <input
+                type="text"
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
+                placeholder="ex: Bracelet rouleau de Scotch Balenciaga"
               />
-            ))}
-        </label>
-        {console.log(selectedFile)}
-        <input
-          type="text"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-          placeholder="Nom du produit"
-        />
-        <textarea
-          rows={6}
-          cols={30}
-          value={productDescription}
-          onChange={(e) => setProductDescription(e.target.value)}
-          placeholder="Description du produit"
-        ></textarea>
-        <input
-          type="number"
-          value={productPrice}
-          onChange={(e) => setProductPrice(e.target.value)}
-          placeholder="Prix"
-        />
-        <input
-          type="text"
-          value={brand}
-          onChange={(e) => setBrand(e.target.value)}
-          placeholder="Marque"
-        />
-        <input
-          type="text"
-          value={condition}
-          onChange={(e) => setCondition(e.target.value)}
-          placeholder="État"
-        />
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder="Emplacement"
-        />
-        <input
-          type="text"
-          value={size}
-          onChange={(e) => setSize(e.target.value)}
-          placeholder="Taille"
-        />
-        <input
-          type="text"
-          value={color}
-          onChange={(e) => setColor(e.target.value)}
-          placeholder="Couleur"
-        />
-        <button type="submit">Publier</button>
-      </form>
+            </div>
+            <div className="textinput">
+              <p>Décris ton article</p>
+              <textarea
+                rows={6}
+                cols={30}
+                value={productDescription}
+                onChange={(e) => setProductDescription(e.target.value)}
+                placeholder="ex: Un bracelet moche mais comme c'est Balenciaga tout le monde le veut."
+              />
+            </div>
+          </div>
+          <div className="textsection">
+            <div className="textinput">
+              <p>Prix</p>
+              <input
+                type="text"
+                value={productPrice}
+                onChange={(e) => setProductPrice(e.target.value)}
+                placeholder="0,00€"
+              />
+            </div>
+          </div>
+          <div className="textsection">
+            <div className="textinput">
+              <p>Marque :</p>
+              <input
+                type="text"
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+                placeholder="ex: Balenciaga"
+              />
+            </div>
+            <div className="textinput">
+              <p>État :</p>
+              <input
+                type="text"
+                value={condition}
+                onChange={(e) => setCondition(e.target.value)}
+                placeholder="ex: Bon état"
+              />
+            </div>
+            <div className="textinput">
+              <p>Ville : </p>
+              <input
+                type="text"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder="ex : Izmir, la meilleure ville du monde"
+              />
+            </div>
+            <div className="textinput">
+              <p>Taille :</p>
+              <input
+                type="text"
+                value={size}
+                onChange={(e) => setSize(e.target.value)}
+                placeholder="ex : M"
+              />
+            </div>
+            <div className="textinput">
+              <p>Couleur : </p>
+              <input
+                type="text"
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+                placeholder="ex : Violet"
+              />
+            </div>
+          </div>
+          <div className="bouton">
+            <button type="submit" className="validation">
+              Publier
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   ) : null;
 };

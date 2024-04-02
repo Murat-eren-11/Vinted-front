@@ -2,7 +2,10 @@ import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Range, getTrackBackground } from "react-range";
-
+//J'ai mis 100 props, mais faut comprendre qu'il y  les modales
+//Qui concerne les 4 premières props
+//Le token les 2 d'après
+//Puis les différents tri/recherche
 const Header = ({
   visible,
   setVisible,
@@ -18,30 +21,31 @@ const Header = ({
   sortValue,
 }) => {
   const location = useLocation();
+  //Ici je dis que si la location est "/" on est sur la home page
   const isHomePage = location.pathname === "/";
-
+  //les usestate des différents tri/recherche
   const [localSearchTitle, setLocalSearchTitle] = useState(searchTitle);
   const [localPriceRange, setLocalPriceRange] = useState(priceRange);
   const [localSortValue, setLocalSortValue] = useState(sortValue);
-
+  //Fonction pour la recherche
   const handleSearchTitleChange = (e) => {
     const title = e.target.value;
     setLocalSearchTitle(title);
     onSearchTitleChange(title);
   };
-
+  //fonction pour trier les article entre deux prix
   const handlePriceRangeChange = (range) => {
     setLocalPriceRange(range);
     onPriceRangeChange(range);
   };
-
+  //fonction pour trier par ordre croissant ou décroissant de prix
   const handleSortChange = () => {
     const newSortValue =
       localSortValue === "price-asc" ? "price-desc" : "price-asc";
     setLocalSortValue(newSortValue);
     onSortChange(newSortValue);
   };
-
+  //fonction pour le bouton vendre article
   const handleSellClick = () => {
     if (token) {
       return;

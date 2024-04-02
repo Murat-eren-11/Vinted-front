@@ -7,7 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 
 const Offer = () => {
   const [articles, setArticles] = useState({});
-
+  //on prend l'id du paramètre de l'url
   const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
@@ -24,12 +24,12 @@ const Offer = () => {
 
     fetchData();
   }, [id]);
-
+  //pour le caroussel
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 1,
-      slidesToSlide: 1, // Nombre d'images à déplacer lors du clic sur les flèches
+      slidesToSlide: 1,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -42,6 +42,7 @@ const Offer = () => {
       slidesToSlide: 1,
     },
   };
+  //J'ai pu voir qu'il y a un package pour varier ceci et pouvoir le changer par rapport au type d'appareil
   const deviceType = "desktop";
   return (
     <main className="offremain">

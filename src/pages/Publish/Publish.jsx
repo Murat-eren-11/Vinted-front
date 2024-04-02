@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Publish = ({ token }) => {
+  //On a pris le token en props, parce qu'on a besoin du token pour accéder au publish
+  //les state ci-dessous servent à récupérer chacune des entrées de notre publication, en cohérence avec notre bdd
   const [selectedFile, setSelectedFile] = useState([]);
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
@@ -14,13 +16,13 @@ const Publish = ({ token }) => {
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const navigate = useNavigate();
-
+  //variable pour faire un array de nos images uploadés
   const handleFileChange = (e) => {
     const newFiles = Array.from(e.target.files);
 
     setSelectedFile((prevFiles) => [...prevFiles, ...newFiles]);
   };
-
+  //fonction qui s'active quand on submit, ça envoie un le form au back
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -48,13 +50,13 @@ const Publish = ({ token }) => {
         }
       );
 
-      console.log("l'annonce:", response.data);
+      //on repart dans l'offre
       navigate(`/offre/${response.data._id}`);
     } catch (error) {
       console.log("Erreur de l'annonce: ", error.message);
     }
   };
-
+  //Si pas de token, on repart sur la page d'accueil
   useEffect(() => {
     if (!token) {
       navigate("/");

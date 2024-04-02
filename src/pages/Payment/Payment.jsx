@@ -8,6 +8,7 @@ import CheckoutForm from "../../components/CheckoutForm/CheckoutForm";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_API);
 const Payment = () => {
   const location = useLocation();
+  //je récupère le state de la page offer
   const { title, price } = location.state;
 
   const options = {
@@ -15,6 +16,7 @@ const Payment = () => {
     amount: Number((price * 100).toFixed(0)),
     currency: "eur",
   };
+  //j'ai fait un calcul rapide pour faire genre y'a une variable
   const total = Number(price) + 0.4 + 0.8;
   return (
     <div className="paymentpage">

@@ -20,8 +20,11 @@ const Login = ({ setLogVisible, handleToken }) => {
           password: password,
         }
       );
+      //on appelle le token
       handleToken(response.data.token);
+      //on enlève la modale
       setLogVisible(false);
+      //on va dans /publish
       navigate("/publish");
     } catch (error) {
       if (error.response && error.response.status === 400) {

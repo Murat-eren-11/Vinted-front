@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
@@ -93,7 +98,24 @@ function App() {
             )
           }
         />{" "}
-        <Route path="/payment" element={<Payment />} />{" "}
+        <Route
+          path="/payment"
+          element={
+            token ? (
+              <Payment />
+            ) : (
+              <Navigate
+                to="/"
+                replace
+                state={{
+                  from: "/payment",
+                  message:
+                    "Vous devez être connecté pour accéder à la page de paiement.",
+                }}
+              />
+            )
+          }
+        />
         <Route path="*" element={<p>Rien a voir ici, circulez</p>} />
       </Routes>
       {visible && <Signup setVisible={setVisible} />}

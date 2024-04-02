@@ -72,7 +72,7 @@ function App() {
             />
           }
         />
-        <Route path="/offer/:id" element={<Offer />} />
+        <Route path="/offer/:id" element={<Offer token={token} />} />
         <Route
           path="/publish"
           element={

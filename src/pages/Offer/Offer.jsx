@@ -5,7 +5,7 @@ import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const Offer = () => {
+const Offer = ({ token }) => {
   const [articles, setArticles] = useState({});
   //on prend l'id du paramètre de l'url
   const { id } = useParams();
@@ -130,15 +130,21 @@ const Offer = () => {
               </span>
             </div>
           </div>
-          <Link
-            to="/payment"
-            state={{
-              title: articles.product_name,
-              price: articles.product_price,
-            }}
-          >
-            <button className="buy">Acheter</button>
-          </Link>
+          {token ? (
+            <Link
+              to="/payment"
+              state={{
+                title: articles.product_name,
+                price: articles.product_price,
+              }}
+            >
+              <button className="buy">Acheter</button>
+            </Link>
+          ) : (
+            <div className="error-message">
+              Veuillez vous connecter pour acheter
+            </div>
+          )}
         </div>
       </section>
     </main>

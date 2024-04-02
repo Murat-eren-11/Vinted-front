@@ -7,7 +7,7 @@ import {
 import axios from "axios";
 import { useState } from "react";
 
-const CheckoutForm = ({ articleName, articlePrice }) => {
+const CheckoutForm = ({ title, price }) => {
   const [errorMessage, setErrorMessage] = useState();
   const [isLoading, setIsLoading] = useState();
   const [paymentIsDone, setPaymentIsDone] = useState();
@@ -33,8 +33,8 @@ const CheckoutForm = ({ articleName, articlePrice }) => {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}v2/payment`,
         {
-          title: articleName,
-          amount: articlePrice,
+          title: title,
+          amount: price,
         }
       );
       const clientSecret = response.data.client_secret;

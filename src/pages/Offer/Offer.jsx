@@ -142,7 +142,9 @@ const Offer = ({ token }) => {
             </Link>
           ) : (
             <div className="error-message">
-              Veuillez vous connecter pour acheter
+              <p className="error-message">
+                Veuillez vous connecter pour acheter
+              </p>
             </div>
           )}
         </div>
